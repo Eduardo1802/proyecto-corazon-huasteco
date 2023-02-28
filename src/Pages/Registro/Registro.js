@@ -22,19 +22,27 @@ import { Link } from 'react-router-dom';
 // import { logEvent } from 'firebase/analytics';
 // import { trace } from 'firebase/performance'
 
-const tipos = [
+const ocupacion = [
     { label: 'Estudiante' },
-    { label: 'Docente' },
-    { label: 'Persona Interesada' },
-    
+    { label: 'Docente' },   
+    { label: 'Persona interesada' },    
+]
+
+const tipo = [
+  { label: 'Consultador' },   
 ]
 
 const sexos = [
     { label: 'Masculino' },
     { label: 'Femenino' },
-    { label: 'Prefiero no decirlo' },
 ]
 
+const preguntas = [
+  { label: '¿Cual es el nombre completo de tu madre?' },
+  { label: '¿Cual es el nombre de tu primer mascota?' },
+  { label: '¿Cual es el nombre de tu mejor amigo?' },
+  { label: '¿Cual es el nombre de tu comida favorita?' },
+]
 
 export const Registro = () => {
 
@@ -81,6 +89,14 @@ export const Registro = () => {
                 <TextField type="text" id="filled-basic" label="Nombre(s)" variant="outlined" sx={{ width: 300 }} />
                 <TextField type="text" id="filled-basic" label="Apellidos" variant="outlined" sx={{ width: 300 }} />
                 <TextField type="number" id="filled-basic" label="Edad" variant="outlined" sx={{ width: 300 }} />
+                <TextField type="text" id="filled-basic" label="Código Postal" variant="outlined" sx={{ width: 300 }} />
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={tipo}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} label="Tipo de usuario" />}
+                />
                 <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -91,18 +107,23 @@ export const Registro = () => {
                 <Autocomplete
                     disablePortal
                     id="combo-box-demo"
-                    options={tipos}
+                    options={ocupacion}
                     sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="Ocupación" />}
+                    renderInput={(params) => <TextField {...params} label="Perfil" />}
                 />
-                
-                <TextField type="text" id="filled-basic" label="Código Postal:" variant="outlined" sx={{ width: 300 }} />
-                <TextField type="email" id="filled-basic" label="Correo electronico:" variant="outlined" sx={{ width: 300 }} />
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={preguntas}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} label="Pregunta Secreta" />}
+                />
+                <TextField type="text" id="filled-basic" label="Respuesta" variant="outlined" sx={{ width: 300 }} />
+                <TextField type="email" id="filled-basic" label="Correo electronico" variant="outlined" sx={{ width: 300 }} />
               
                 <TextField type="password" id="filled-basic" label="Contraseña" variant="outlined" sx={{ width: 300 }} />
                 <TextField type="password" id="filled-basic" label="Repite la Contraseña" variant="outlined" sx={{ width: 300 }} />
-                
-                
+              
                 <Checkbox sx={{maxWidth: "1px"}}/><Typography variant="caption" color="initial" sx={{textAlign: "center"}}>He leído y acepto el <Link to="/aviso-de-privacidad">Aviso de privacidad</Link></Typography>
 
                 <Button variant="contained" sx={{width: "98%"}} endIcon={<LockIcon />}>
@@ -110,9 +131,8 @@ export const Registro = () => {
                 </Button>
 
                 <div style={{display: "grid", gridTemplateColumns: "repeat(2, 1fr)"}}>
-                    <Typography variant="caption" color="initial" sx={{textAlign: "center"}}>Envia una <Link to="colaborador">solicitud</Link> de apoyo</Typography>
-                    <Typography variant="caption" color="initial" sx={{textAlign: "center"}}>¿Tienes cuenta? <Link to="/acceso"> Inicia sesión</Link></Typography>
-                    
+                    <Typography variant="caption" color="initial" sx={{textAlign: "center"}}>¿Desea ser colaborador? Envia una <Link to="colaborador">solicitud</Link> de apoyo</Typography>
+                    <Typography variant="caption" color="initial" sx={{textAlign: "center"}}>¿Tienes cuenta? <Link to="/acceso"> Inicia sesión</Link></Typography>          
                 </div>
                 
 
@@ -130,3 +150,4 @@ export const Registro = () => {
     </div>
   )
 }
+
